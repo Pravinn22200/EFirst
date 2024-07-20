@@ -1,4 +1,7 @@
 
+using EFirst.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace EFirst
 {
     public class Program
@@ -7,6 +10,9 @@ namespace EFirst
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<AppDbContext>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Con"))
+            );
             // Add services to the container.
 
             builder.Services.AddControllers();
